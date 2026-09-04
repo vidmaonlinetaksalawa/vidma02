@@ -16,12 +16,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyCFaG8dPuy1cVlsCeaXezIYczrUk_0MSFk",
+  authDomain: "vidma01-f4345.firebaseapp.com",
+  projectId: "vidma01-f4345",
+  storageBucket: "vidma01-f4345.firebasestorage.app",
+  messagingSenderId: "532484996648",
+  appId: "1:532484996648:web:2929bad8e971750fb1ff1d"
 };
 
 export const app = initializeApp(firebaseConfig);
