@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    // ---- users/{uid} ----
+    // Each user can read their own profile; admins can read all.
+    // A user can create their OWN doc on signup (role is forced to 'student' client-side).
+    // Only admins can change role or paidMonths after creation (students can still edit e.g. their name).
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid) && request.resource.data.role == 'student';
+      allow update: if isAdmin() ||
+        (isOwner(uid)
+          && !('role' in request.resource.data.diff(resource.data).affectedKeys())
+          && !('paidMonths' in request.resource.data.diff(resource.data).affectedKeys()));
+      allow delete: if false;
+    }
+
+    // ---- payments/{paymentId} ----
+    // Students can create their own pending payment record and read only their own.
+    // Only admins can approve/reject (update).
+    match /payments/{paymentId} {
+      allow read: if isAdmin() || (isSignedIn() && resource.data.studentId == request.auth.uid);
+      allow create: if isSignedIn()
+        && request.resource.data.studentId == request.auth.uid
+        && request.resource.data.status == 'pending';
+      allow update: if isAdmin();
+      allow delete: if false;
+    }
+
+    // ---- settings/classInfo ----
+    // Any signed-in user can read (the UI decides what to show based on paid status);
+    // only admins can write the Zoom link / recordings.
+    match /settings/{docId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+  }
+}

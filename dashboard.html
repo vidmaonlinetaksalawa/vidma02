@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Dashboard</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>📚 Class Portal</h1>
+    <div>
+      <span class="muted" id="welcomeName" style="margin-right:14px;"></span>
+      <button class="secondary" id="logoutBtn">Log out</button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>This Month's Payment — <span id="monthLabel"></span></h2>
+      <div class="row">
+        <span>Status:</span>
+        <span class="badge none" id="statusBadge">Loading…</span>
+      </div>
+      <div id="paymentFormWrap" style="display:none; margin-top:14px;">
+        <label>Upload bank slip screenshot (image, max 5MB)</label>
+        <input type="file" id="slipFile" accept="image/*" />
+        <label>Note / Reference number (optional)</label>
+        <input type="text" id="slipNote" placeholder="e.g. transaction ref" />
+        <p class="error-msg" id="uploadError"></p>
+        <button id="submitSlipBtn">Submit for Review</button>
+      </div>
+      <p class="muted" id="rejectedNote" style="display:none; margin-top:10px;">
+        Your last submission was rejected. Please re-check the details and submit again.
+      </p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h2>Join Live Class</h2>
+        <p class="muted">Available once this month's payment is approved.</p>
+        <a href="#" id="joinZoomBtn" class="btn" target="_blank" rel="noopener"
+           style="pointer-events:none; opacity:0.5;">Join Zoom Class</a>
+      </div>
+
+      <div class="card">
+        <h2>Class Recordings</h2>
+        <div id="recordingsWrap">
+          <p class="locked-notice">Unlock recordings by completing this month's payment.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
