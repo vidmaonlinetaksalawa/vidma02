@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Class Portal — Login</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container" style="max-width:420px; padding-top:60px;">
+    <div class="card">
+      <h2 id="formTitle">Student / Admin Login</h2>
+
+      <form id="loginForm">
+        <label>Email</label>
+        <input type="email" id="loginEmail" required />
+        <label>Password</label>
+        <input type="password" id="loginPassword" required />
+        <p class="error-msg" id="loginError"></p>
+        <button type="submit" style="width:100%">Log In</button>
+      </form>
+
+      <form id="registerForm" style="display:none">
+        <label>Full Name</label>
+        <input type="text" id="regName" required />
+        <label>Email</label>
+        <input type="email" id="regEmail" required />
+        <label>Password (min 6 characters)</label>
+        <input type="password" id="regPassword" required minlength="6" />
+        <p class="error-msg" id="regError"></p>
+        <button type="submit" style="width:100%">Create Student Account</button>
+      </form>
+
+      <p style="text-align:center; margin-top:16px;">
+        <span class="toggle-link" id="toggleLink">New student? Create an account</span>
+      </p>
+      <p class="muted" style="text-align:center;">
+        Admin accounts are created manually in the Supabase dashboard (see README).
+      </p>
+    </div>
+  </div>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>
