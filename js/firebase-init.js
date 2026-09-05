@@ -18,6 +18,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyCFaG8dPuy1cVlsCeaXezIYczrUk_0MSFk",
   authDomain: "vidma01-f4345.firebaseapp.com",
+  databaseURL: "https://vidma01-f4345-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "vidma01-f4345",
   storageBucket: "vidma01-f4345.firebasestorage.app",
   messagingSenderId: "532484996648",
